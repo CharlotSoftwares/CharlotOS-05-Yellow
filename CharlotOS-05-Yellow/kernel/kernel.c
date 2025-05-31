@@ -1,5 +1,6 @@
 #include "tty.h"
 #include "input.h"
+#include "fs/fs.h"
 
 void shell_handle_input(char* input) {
     if (strcmp(input, "charlot version") == 0) {
