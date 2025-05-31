@@ -2,7 +2,8 @@ ISO_NAME=CharlotOS.iso
 CC=gcc
 CFLAGS=-ffreestanding -m32 -Wall -Wextra -O2
 
-OBJS=boot/boot.o kernel/kernel.o kernel/tty.o kernel/input.o
+# Add new filesystem source files to OBJS
+OBJS=boot/boot.o kernel/kernel.o kernel/tty.o kernel/input.o kernel/fs/fs.o kernel/fs/fat12.o
 
 all: iso/$(ISO_NAME)
 
@@ -14,6 +15,12 @@ kernel/tty.o: kernel/tty.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 kernel/input.o: kernel/input.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+kernel/fs/fs.o: kernel/fs/fs.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+kernel/fs/fat12.o: kernel/fs/fat12.c kernel/fs/fat12.h
 	$(CC) $(CFLAGS) -c $< -o $@
 
 # Assemble boot file
