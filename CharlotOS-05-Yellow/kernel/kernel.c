@@ -1,24 +1,19 @@
-// kernel.c — CharlotOS Yellow core kernel
-void print_char(char c, int color) {
-    volatile char* video = (volatile char*)0xB8000;
-    for (int i = 0; i < 80 * 25 * 2; i += 2) {
-        video[i] = ' ';        // clear screen
-        video[i + 1] = 0x0E;   // yellow on black
-    }
+#include "tty.h"
+#include "input.h"
 
-    video[0] = c;
-    video[1] = color;
-}
-
-void print_str(const char* str, int color) {
-    volatile char* video = (volatile char*)0xB8000;
-    int i = 0;
-    while (*str) {
-        video[i++] = *str++;
-        video[i++] = color;
+void shell_handle_input(char* input) {
+    if (strcmp(input, "charlot version") == 0) {
+        tty_print("CharlotOS-05-Yellow v0.1 - loud, dumb, and dangerous\n");
+    } else if (strcmp(input, "clear") == 0) {
+        tty_clear();
+    } else {
+        tty_print("Unknown command: ");
+        tty_print(input);
+        tty_newline();
     }
 }
-// shit that took 19203493409520193 hours
+
 void kernel_main() {
-    print_str("CharlotOS-05-Yellow boots up like a damn beast.\n", 0x0E);
+    tty_init();
+    init_keyboard();
 }
