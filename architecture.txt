@@ -1,0 +1,10 @@
+CharlotOS-05-Yellow/
+├── boot/
+│   ├── boot.asm           # Assembly bootloader start
+│   └── grub.cfg           # GRUB configuration
+├── kernel/
+│   └── kernel.c           # Main kernel source
+├── linker.ld              # Linker script for kernel
+├── Makefile               # Build system
+└── iso/
+    └── CharlotOS.iso      # Output bootable ISO (generated)
