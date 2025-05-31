@@ -9,7 +9,9 @@ CharlotOS-05-Yellow/
 │   ├── input.c            # NEW: Keyboard
 │   └── input.h            # NEW
 ├── fs/                   # PREP for file system
-│   └── fs.h
+|   ├── fat12.c
+|   ├── fat12.h
+│   ├── fs.h
 │   └── fs.c
 ├── linker.ld
 ├── Makefile
